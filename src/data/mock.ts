@@ -46,18 +46,18 @@ export const monthly: MonthlyInsight[] = [
 ];
 
 export const byCreator: BarRow[] = [
-  { name: "Bradley Smith", value: 14800 },
-  { name: "Farhat Topcu", value: 12200 },
-  { name: "Victor Martinez", value: 8200 },
-  { name: "Oralia Ramirez Medina", value: 1600 },
-  { name: "Ronald Parker", value: 500 },
+  { name: "Zain RealMadrid", value: 14800 },
+  { name: "Huda Arsenal", value: 12200 },
+  { name: "Maryam PSG", value: 8200 },
+  { name: "Maram Barcelona ", value: 1600 },
+  { name: "Max Liverpool", value: 500 },
 ];
 
 export const byAssignee: BarRow[] = [
   { name: "Unknown", value: 33000 },
-  { name: "JAMEEL, Zain", value: 900 },
-  { name: "Donny Lumpkin", value: 200 },
-  { name: "FOSTER, Titus", value: 140 },
+  { name: "Jonathan Silva", value: 900 },
+  { name: "Julie Branson", value: 200 },
+  { name: "Tom DiChiara", value: 140 },
 ];
 
 export const topInsights: InsightRow[] = [
@@ -65,7 +65,7 @@ export const topInsights: InsightRow[] = [
     insightName: "AHU Discharge Air Temperature Below Setpoint (Cooling)",
     twin: "Air Handling Unit 0100",
     projectedSavingsUsd: 647,
-    creator: "Victor Martinez",
+    creator: "Zain RealMadrid",
     assignee: "",
     dateClosed: "2025-09-24 00:36",
     lastActive: "2025-11-19 15:59",
@@ -74,7 +74,7 @@ export const topInsights: InsightRow[] = [
     insightName: "AHU Return Air Temperature Lower Than Expected During Cooling Mode",
     twin: "AHU_2",
     projectedSavingsUsd: 4134,
-    creator: "Victor Martinez",
+    creator: "Max Liverpool",
     assignee: "",
     dateClosed: "2025-12-03",
     lastActive: "2025-11-19 15:59",
@@ -83,7 +83,7 @@ export const topInsights: InsightRow[] = [
     insightName: "Terminal Unit Leaking Reheat Coil Valve",
     twin: "13013.VAVB.1158",
     projectedSavingsUsd: 651,
-    creator: "Oralia Ramirez Medina",
+    creator: "Maryam PSG",
     assignee: "",
     dateClosed: "2026-01-07",
     lastActive: "2025-09-12 11:58",
@@ -92,7 +92,7 @@ export const topInsights: InsightRow[] = [
     insightName: "AHU Static Pressure Above Setpoint",
     twin: "AHU_2",
     projectedSavingsUsd: 91.58,
-    creator: "Farhat Topcu",
+    creator: "Maram Barcelona",
     assignee: "",
     dateClosed: "2026-01-16",
     lastActive: "2025-11-03 05:59",

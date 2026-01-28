@@ -1,7 +1,8 @@
 # ---------- build ----------
 FROM node:20-alpine AS build 
     #FROM → choose a base image
-    #node:20-alpine → Node.js version 20, Alpine Linux (very small image)
+    #node:20-alpine → Node.js version 20,
+    # Alpine Linux (very small image)
     #AS build → names this stage build
     #Why?
     #We need Node only to compile the React/Vite app, not to run it
@@ -65,8 +66,8 @@ RUN printf 'server {\n\
     #printf is used to avoid creating a separate .conf file
 
   listen 80;\n\
-      #Writes a custom nginx configuration file
-      #printf is used to avoid creating a separate .conf file
+      #Tells nginx to listen on port 80
+      #Default HTTP port inside the container
 
   server_name _;\n\
       #_ means: accept any hostname
