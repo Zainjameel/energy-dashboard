@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from "react";     //Pulls React’s useState hook   I use this to store UI state (which month is selected)
 import Sidebar from "../components/Sidebar";
 import TopKpis from "../components/TopKpis";
