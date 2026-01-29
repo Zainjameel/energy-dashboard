@@ -1,22 +1,31 @@
+import { useState } from "react";     //Pulls React’s useState hook   I use this to store UI state (which month is selected)
 import Sidebar from "../components/Sidebar";
 import TopKpis from "../components/TopKpis";
 import Card from "../components/Card";
 import StackedMonthlyBars from "../components/charts/StackedMonthlyBars";
 import HorizontalBar from "../components/charts/HorizontalBar";
-import { byAssignee, byCreator, monthly, topInsights } from "../data/mock";
+import EnergyByMonth from "../components/EnergyByMonth";
+import { byAssignee, byCreator, monthly, topInsights, energyByTypeForMonth } from "../data/mock";
+
+
 
 export default function DashboardPage() {
+
+  const months = Object.keys(energyByTypeForMonth);    //Object.keys → returns all month names  This avoids hardcoding months 
+  const [selectedMonth, setSelectedMonth] = useState(months[0])  //React state: selectedMonth → current month setSelectedMonth →
+                                                                 //  function to change it Default value = first month in the ataset 
+                                                                 //  This is what drives the dropdown + EnergyByMonth chart
   return (
     <div className="layout">
-      <Sidebar />
+      <Sidebar />         
 
       <main className="main">
         <div className="headerRow">
           <div>
             <div className="hTitle">
-              Financial and Energy Impacts Dashboard - Central Utility Plant - Energy Plaza
+              Financial and Energy Impacts Dashboard
             </div>
-            <div className="hSub">Feb 2025 → Mar 2025 • Last Data Refresh (mock)</div>
+            <div className="hSub">{months[0] } → {months[months.length-1]} </div>
           </div>
 
           <span className="badge">
@@ -28,12 +37,27 @@ export default function DashboardPage() {
         <TopKpis />
 
         <div className="grid" style={{ marginTop: 14 }}>
-          <Card title="Energy by Month" className="span-7">
-            <div className="chartWrap">
-              <div className="muted" style={{ padding: 10 }}>
-                There is no data to display (placeholder panel like screenshot).
-              </div>
-            </div>
+          <Card
+            title="Energy by Month"
+            className="span-7"
+            right={
+              <select
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="monthSelect"
+              >
+                {months.map((m) => (
+                  <option key={m} value={m} style={{ color: "#cc1212" }}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+            }
+          >
+            <EnergyByMonth
+              month={selectedMonth}
+              slices={energyByTypeForMonth[selectedMonth]}
+            />
           </Card>
 
           <Card title="Insights Actioned" className="span-5">

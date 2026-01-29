@@ -191,3 +191,65 @@ a{ color:inherit; text-decoration:none; }
   .kpiCard{ grid-column: span 6; }
   .span-7,.span-5,.span-6{ grid-column: span 12; }
 }
+
+.energyMonthRow{
+  display:flex;
+  gap:22px;
+  align-items:center;
+  height:280px;
+}
+
+.donutBox{
+  flex: 0 0 55%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.legendBox{
+  flex: 1;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.legendList{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding-left:10px;
+}
+
+.legendItem{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:rgba(230,237,243,.85);
+  font-size:14px;
+}
+
+.legendSwatch{
+  width:10px;
+  height:10px;
+  border-radius:3px;
+}
+
+.legendLabel{
+  min-width:120px;
+  color:rgba(230,237,243,.78);
+}
+
+.legendValue{
+  font-weight:700;
+  color:rgba(230,237,243,.92);
+}
+
+.monthSelect {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6edf3;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+}

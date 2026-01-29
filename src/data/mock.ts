@@ -5,6 +5,12 @@ export type Kpis = {
   unsuccessfullyActioned: number;
 };
 
+export type EnergyTypeSlice = {
+  label: string;
+  value: number; // percent or normalized share
+};
+
+
 export type MonthlyInsight = {
   month: string; // e.g. "Feb 2025"
   success: number;
@@ -30,7 +36,41 @@ export const kpis: Kpis = {
   unsuccessfullyActioned: 96,
 };
 
+export const energyByTypeForMonth: Record<string, EnergyTypeSlice[]> = {
+  "Jan 2025": [
+    { label: "Electricity", value: 6 },
+    { label: "Chilled Water", value: 7 },
+    { label: "Natural Gas", value: 8 },
+    { label: "Steam", value: 9 },
+  ],
+  "Feb 2025": [
+    { label: "Electricity", value: 36 },
+    { label: "Chilled Water", value: 32 },
+    { label: "Natural Gas", value: 18 },
+    { label: "Steam", value: 14 },
+  ],
+  "Mar 2025": [
+    { label: "Electricity", value: 44 },
+    { label: "Chilled Water", value: 35 },
+    { label: "Natural Gas", value: 17 },
+    { label: "Steam", value: 4 },
+  ],
+  "Apr 2025": [
+    { label: "Electricity", value: 22 },
+    { label: "Chilled Water", value: 41 },
+    { label: "Natural Gas", value: 17 },
+    { label: "Steam", value: 10 },
+  ],
+  "May 2025": [
+    { label: "Electricity", value: 1 },
+    { label: "Chilled Water", value: 2 },
+    { label: "Natural Gas", value: 3 },
+    { label: "Steam", value: 4 },
+  ]
+};
+
 export const monthly: MonthlyInsight[] = [
+  
   { month: "Feb 2025", success: 0, unsuccess: 0 },
   { month: "Mar 2025", success: 2, unsuccess: 1 },
   { month: "Apr 2025", success: 0, unsuccess: 0 },
@@ -46,18 +86,18 @@ export const monthly: MonthlyInsight[] = [
 ];
 
 export const byCreator: BarRow[] = [
-  { name: "Zain RealMadrid", value: 14800 },
-  { name: "Huda Arsenal", value: 12200 },
+  { name: "Zain RealMadrid", value: 13800 },
+  { name: "Huda Juventus", value: 11200 },
   { name: "Maryam PSG", value: 8200 },
-  { name: "Maram Barcelona ", value: 1600 },
-  { name: "Max Liverpool", value: 500 },
+  { name: "Maram Barcelona ", value: 6600 },
+  { name: "Max Liverpool", value: 15000 },
 ];
 
 export const byAssignee: BarRow[] = [
   { name: "Unknown", value: 33000 },
-  { name: "Jonathan Silva", value: 900 },
-  { name: "Julie Branson", value: 200 },
-  { name: "Tom DiChiara", value: 140 },
+  { name: "Jonathan Silva", value: 9000 },
+  { name: "Julie Branson", value: 2000 },
+  { name: "Tom DiChiara", value: 14000 },
 ];
 
 export const topInsights: InsightRow[] = [
