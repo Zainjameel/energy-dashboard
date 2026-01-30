@@ -1,255 +1,291 @@
-:root{
-  --bg:#0b0f14;
-  --panel:#111823;
-  --panel2:#0f1620;
-  --border:rgba(255,255,255,.08);
-  --text:#e6edf3;
-  --muted:rgba(230,237,243,.72);
-  --accent:#2f81f7;
-  --good:#12b886;
-  --warn:#f59f00;
-  --bad:#ff6b6b;
+
+
+:root{/* CSS Variables for consistent theming across the dashboard */
+  --bg:#0b0f14;/* Overall background color for the dashboard */
+  --panel:#111823;/* Background color for panels and cards */
+  --panel2:#0f1620;/* Secondary panel background color */
+  --border:rgba(255,255,255,.08);/* Border color used throughout the dashboard */
+  --text:#e6edf3;/* Primary text color for readability */
+  --muted:rgba(230,237,243,.72);/* Muted text color for less prominent information */
+  --accent:#2f81f7;/* Accent color for highlights and interactive elements */
+  --good:#12b886;/* Color indicating good status or performance */
+  --warn:#f59f00;/* Color indicating warning status */
+  --bad:#ff6b6b;/* Color indicating bad status or errors */
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+*{ box-sizing:border-box; }/* Ensures padding and borders are included in element's total width and height 
+Grid layouts predictable | Panels not overflow |  Sidebar widths stay exactly 240px | 
+This is considered best practice in modern CSS.*/
+html,body{ height:100%; }/* This allows children to use:
+ height: 100% 
+min-height: 100vh 
+Full-height layouts
+  Without this, things like: 
+ Sticky sidebars 
+ Full-height dashboards
+  …can break or collapse. */
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  margin:0;/* Remove default margin to allow full use of viewport */
+  background:var(--bg);/* Set the overall background color using the defined variable */
+  color:var(--text);/* Set the default text color for readability */
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;/* ui-sans-serif
+A modern CSS keyword
+Means: “use the OS’s default UI sans-serif font”
+Automatically maps to:
+  Windows → Segoe UI
+  macOS → San Francisco
+  Linux → system UI font
+This is the most future-proof option.
+system-ui
+  Older but widely supported
+  Also maps to the operating system’s UI font
+  Acts as a strong fallback if ui-sans-serif isn’t supported
+-apple-system
+  Specifically targets macOS & iOS
+  Maps to Apple’s San Francisco font
+  Needed for older Safari versions
+Segoe UI
+  Windows system font
+  Clean, readable, great for dashboards
+Roboto
+  Android / Chrome OS default
+  Also very common on desktops
+Arial
+  Universal fallback
+  Almost guaranteed to exist everywhere */
 }
 
-a{ color:inherit; text-decoration:none; }
+a{ color:inherit; text-decoration:none; }/* Links inherit text color and have no underline by default */
 
 .layout{
-  display:grid;
-  grid-template-columns: 240px 1fr;
-  min-height:100vh;
+  display:grid; /* This container will use CSS Grid to arrange its children. */
+  grid-template-columns: 240px 1fr;/* Two columns: a fixed-width 240px sidebar and a flexible main area.fr = fraction of remaining space */
+  min-height:100vh;/* Full viewport height| Ensures the layout always fills the screen vertically */
 }
 
 .sidebar{
-  background:#0a0e13;
-  border-right:1px solid var(--border);
-  padding:16px;
+  background:#0a0e13;/* Slightly darker background for the sidebar */
+  border-right:1px solid var(--border);/* Right border to separate from main content | Adds a thin vertical divider
+   between Sidebar and main content | var(--border) means:The color is defined somewhere globally, usually in :root*/
+  padding:16px;/* Padding inside the sidebar for spacing */  
 }
 
-.brand{
-  font-weight:700;
-  letter-spacing:.3px;
-  margin-bottom:14px;
-  opacity:.95;
+.brand{  /* Brand/logo styling */
+  font-weight:700;/* Bold font for the brand/logo */
+  letter-spacing:.3px;/* Slightly increased letter spacing for better readability */
+  margin-bottom:14px;/* Space below the brand/logo */
+  opacity:.95;  /* Slightly reduced opacity for a subtle effect */  
 }
 
-.navGroupTitle{
-  margin:18px 0 8px;
-  color:var(--muted);
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
+.navGroupTitle{/* Navigation group title styling */
+  margin:18px 0 8px;  /* Margin above and below the title for spacing */
+  color:var(--muted);/* Muted color for less prominence */
+  font-size:12px;   /* Smaller font size for group titles */
+  text-transform:uppercase;   /* Uppercase text for emphasis */ 
+  letter-spacing:.12em;   /* Increased letter spacing for readability */
 }
 
-.navItem{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 10px;
-  border-radius:10px;
-  color:var(--muted);
-  cursor:pointer;
+.navItem{/* Navigation item styling */
+  display:flex;   /* Flexbox for horizontal layout of icon and text */   
+  align-items:center; /* Vertically center items */
+  gap:10px;   /* Space between icon and text */
+  padding:10px 10px;  /* Padding for clickable area */
+  border-radius:10px; /* Rounded corners for a modern look */
+  color:var(--muted); /* Muted color for default state */
+  cursor:pointer; /* Pointer cursor on hover to indicate interactivity */
 }
-.navItem:hover{ background:rgba(255,255,255,.04); color:var(--text); }
-.navItem.active{
-  background:rgba(47,129,247,.12);
-  color:var(--text);
-  border:1px solid rgba(47,129,247,.22);
-}
-
-.main{
-  padding:18px;
+.navItem:hover{ background:rgba(255,255,255,.04); color:var(--text); }/* Hover effect for navigation items | Slight background change and text color to indicate hover state */
+.navItem.active{  /* Active navigation item styling */
+  background:rgba(47,129,247,.12);    /* Highlight background for active item */
+  color:var(--text);  /* Full text color for active item */
+  border:1px solid rgba(47,129,247,.22);  /* Border to emphasize active state */
 }
 
-.headerRow{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:14px;
-}
-.hTitle{
-  font-size:15px;
-  font-weight:600;
-  opacity:.95;
-}
-.hSub{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:12px;
+.main{/* Main content area styling */
+  padding:18px; /* Padding around the main content for spacing */
 }
 
-.grid{
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap:14px;
+.headerRow{/* Header row styling */
+  display:flex; /* Flexbox for horizontal layout */
+  align-items:flex-start; /* Align items to the top */
+  justify-content:space-between;  /* Space between items to push them to edges */
+  gap:16px; /* Gap between items for spacing */
+  margin-bottom:14px; /* Space below the header row */
+}
+.hTitle{  /* Header title styling */
+  font-size:15px;     /* Larger font size for prominence */
+  font-weight:600;  /* Semi-bold font weight */
+  opacity:.95;  /* Slightly reduced opacity for a subtle effect */
+}
+.hSub{/* Header subtitle styling */
+  margin-top:6px; /* Space above the subtitle */
+  color:var(--muted); /* Muted color for less prominence */
+  font-size:12px; /* Smaller font size for subtitle */
 }
 
-.panel{
-  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-  min-height:120px;
+.grid{    /* Grid container for dashboard panels */
+  display:grid; /* Use CSS Grid layout */
+  grid-template-columns: repeat(12, 1fr); /* 12 equal-width columns for flexible layouts */
+  gap:14px; /* Gap between grid items for spacing */
 }
 
-.panelHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:10px;
-}
-.panelTitle{
-  font-size:12px;
-  color:var(--muted);
-}
-.panelTools{
-  color:rgba(255,255,255,.35);
-  font-size:18px;
-  user-select:none;
+.panel{/* Panel/card styling */
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); /* Subtle gradient background for depth */
+  border:1px solid var(--border); /* Border to define panel edges */
+  border-radius:14px; /* Rounded corners for a modern look */
+  padding:12px; /* Padding inside the panel for content spacing */
+  min-height:120px; /* Minimum height to ensure consistent panel sizes */
 }
 
-.kpis{
-  grid-column: 1 / -1;
-  display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap:14px;
+.panelHeader{/* Panel header styling */
+  display:flex; /* Flexbox for horizontal layout */
+  align-items:center; /* Vertically center items */
+  justify-content:space-between;  /* Space between items to push them to edges */
+  margin-bottom:10px;   /* Space below the header */
 }
-.kpiCard{
-  grid-column: span 3;
-  padding:14px;
+.panelTitle{/* Panel title styling */
+  font-size:12px; /* Smaller font size for panel titles */
+  color:var(--muted); /* Muted color for less prominence */
 }
-.kpiValue{
-  font-size:22px;
-  font-weight:700;
-  margin-top:8px;
-}
-.kpiMeta{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:12px;
+.panelTools{/* Panel tools/icons styling */
+    color:rgba(255,255,255,.35);  /* Lighter color for tool icons */
+    font-size:18px; /* Larger size for visibility */
+  user-select:none; /* Prevent text selection on icons */
 }
 
-.span-7{ grid-column: span 7; }
-.span-5{ grid-column: span 5; }
-.span-6{ grid-column: span 6; }
-.span-12{ grid-column: span 12; }
-
-.chartWrap{
-  width:100%;
-  height:280px;
+.kpis{/* KPI cards container styling */
+  grid-column: 1 / -1;  /* Span full width of the grid */
+  display:grid; /* Use CSS Grid layout */
+  grid-template-columns: repeat(12, 1fr);   /* 12 equal-width columns for flexible layouts */
+  gap:14px; /* Gap between KPI cards for spacing */
 }
-.chartWrapTall{
-  width:100%;
-  height:320px;
+.kpiCard{/* Individual KPI card styling */
+  grid-column: span 3;  /* Each card spans 3 columns by default */
+  padding:14px; /* Padding inside the card for content spacing */
 }
-
-.table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:12px;
+.kpiValue{/* KPI value styling */
+  font-size:22px; /* Larger font size for prominence */
+  font-weight:700;      /* Bold font weight for emphasis */
+  margin-top:8px; 
 }
-.table th{
-  text-align:left;
-  color:var(--muted);
-  font-weight:600;
-  border-bottom:1px solid var(--border);
-  padding:10px 8px;
-}
-.table td{
-  border-bottom:1px solid rgba(255,255,255,.06);
-  padding:10px 8px;
-  color:rgba(230,237,243,.9);
-}
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:4px 8px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.03);
-  color:var(--muted);
-}
-.badgeDot{
-  width:8px; height:8px; border-radius:50%;
-  background:var(--accent);
-}
-.muted{ color:var(--muted); }
-
-@media (max-width: 1100px){
-  .layout{ grid-template-columns: 84px 1fr; }
-  .navText{ display:none; }
-  .kpiCard{ grid-column: span 6; }
-  .span-7,.span-5,.span-6{ grid-column: span 12; }
+.kpiMeta{/* KPI metadata styling */
+  margin-top:6px;   /* Space above the metadata */
+  color:var(--muted); /* Muted color for less prominence */
+  font-size:12px; /* Smaller font size for metadata */
 }
 
-.energyMonthRow{
-  display:flex;
-  gap:22px;
-  align-items:center;
-  height:280px;
+.span-7{ grid-column: span 7; } /* Grid item spanning 7 columns */
+.span-5{ grid-column: span 5; } /* Grid item spanning 5 columns */
+.span-6{ grid-column: span 6; } /* Grid item spanning 6 columns */
+.span-12{ grid-column: span 12; } /* Grid item spanning full 12 columns */
+
+.chartWrap{/* Chart container styling */
+  width:100%; /* Full width of the parent container */
+  height:280px; /* Fixed height for consistent chart sizing */
+}
+.chartWrapTall{/* Taller chart container styling */
+  width:100%; /* Full width of the parent container */
+  height:320px; /* Increased height for taller charts */
 }
 
-.donutBox{
-  flex: 0 0 55%;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.table{/* Table styling */
+  width:100%; /* Full width of the parent container */
+  border-collapse:collapse; /* Collapse borders for cleaner look */
+  font-size:12px; /* Smaller font size for table content */
+}
+.table th{/* Table header styling */
+  text-align:left;  /* Left-align header text */
+  color:var(--muted); /* Muted color for header text */
+  font-weight:600;  /* Semi-bold font weight for emphasis */
+  border-bottom:1px solid var(--border);  /* Bottom border to separate header from body */
+  padding:10px 8px; /* Padding for header cells */
+}
+.table td{/* Table cell styling */
+  border-bottom:1px solid rgba(255,255,255,.06);  /* Bottom border for rows */
+  padding:10px 8px;   /* Padding for table cells */
+  color:rgba(230,237,243,.9); /* Slightly muted color for readability */
+}
+.badge{   /* Badge styling */
+  display:inline-flex;  /* Inline flex for horizontal layout */
+  align-items:center; /* Vertically center items */
+  gap:6px;  /* Space between dot and text */
+  padding:4px 8px;/* Padding for clickable area */
+  border-radius:999px;  /* Fully rounded for pill shape */
+  border:1px solid var(--border); /* Border to define badge edges */
+  background:rgba(255,255,255,.03); /* Subtle background for depth */
+  color:var(--muted); /* Muted color for less prominence */
+}
+.badgeDot{/* Badge dot styling */
+  width:8px; height:8px; border-radius:50%;   /* Small circle */
+  background:var(--accent); /* Accent color for the dot */
+}
+.muted{ color:var(--muted); }/* Utility class for muted text color */
+
+@media (max-width: 1100px){/* Responsive adjustments for smaller screens */
+  .layout{ grid-template-columns: 84px 1fr; }/* Narrower sidebar on smaller screens */
+  .navText{ display:none; } /* Hide navigation text to save space */
+  .kpiCard{ grid-column: span 6; }  /* KPI cards span 6 columns on smaller screens */
+  .span-7,.span-5,.span-6{ grid-column: span 12; }  /* All grid items span full width on smaller screens */
 }
 
-.legendBox{
-  flex: 1;
-  height:100%;
-  display:flex;
-  align-items:center;
+.energyMonthRow{/* Energy usage month selection row styling */
+  display:flex; /* Flexbox for horizontal layout */
+  gap:22px; /* Gap between items for spacing */
+  align-items:center; /* Vertically center items */
+  height:280px; /* Fixed height for consistent sizing */
 }
 
-.legendList{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  padding-left:10px;
+.donutBox{/* Donut chart container styling */
+  flex: 0 0 55%;  /* Fixed width of 55% of the parent container */
+  height:100%;    /* Full height of the parent container */
+  display:flex; /* Flexbox for centering content */
+  align-items:center; /* Vertically center content */
+  justify-content:center; /* Horizontally center content */
 }
 
-.legendItem{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  color:rgba(230,237,243,.85);
-  font-size:14px;
+.legendBox{/* Legend container styling */
+  flex: 1;  /* Flexible width to take remaining space */
+  height:100%;  /* Full height of the parent container */
+  display:flex; /* Flexbox for vertical layout */
+  align-items:center; /* Vertically center content */
 }
 
-.legendSwatch{
-  width:10px;
-  height:10px;
-  border-radius:3px;
+.legendList{/* Legend list styling */
+  display:flex;   /* Flexbox for layout */
+  flex-direction:column;  /* Vertical stacking of items */
+  gap:14px; /* Gap between legend items for spacing */
+  padding-left:10px;  /* Padding on the left for spacing */
 }
 
-.legendLabel{
-  min-width:120px;
-  color:rgba(230,237,243,.78);
+.legendItem{/* Individual legend item styling */
+  display:flex; /* Flexbox for horizontal layout */
+  align-items:center; /* Vertically center items */
+  gap:12px; /* Gap between swatch and label/value */
+  color:rgba(230,237,243,.85);    /* Slightly muted color for readability */
+  font-size:14px; /* Font size for legend items */
 }
 
-.legendValue{
-  font-weight:700;
-  color:rgba(230,237,243,.92);
+.legendSwatch{    /* Legend color swatch styling */
+  width:10px;       /* Fixed width for the swatch */
+  height:10px;    /* Fixed height for the swatch */
+  border-radius:3px;  /* Slightly rounded corners */
 }
 
-.monthSelect {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e6edf3;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  padding: 4px 8px;
-  font-size: 12px;
+.legendLabel{/* Legend label styling */
+  min-width:120px;  /* Minimum width for alignment */
+  color:rgba(230,237,243,.78);  /* Muted color for labels */
+}
+
+.legendValue{/* Legend value styling */
+  font-weight:700;  /* Bold font for emphasis */
+  color:rgba(230,237,243,.92);  /* Slightly brighter color for values */
+}
+
+.monthSelect {/* Month selection dropdown styling */
+  background: rgba(255, 255, 255, 0.05);  /* Subtle background for dropdown */
+  color: #e6edf3; /* Text color for readability */
+  border: 1px solid rgba(255, 255, 255, 0.15);  /* Border to define dropdown edges */
+  border-radius: 6px; /* Rounded corners for a modern look */
+  padding: 4px 8px; /* Padding inside the dropdown for spacing */
+  font-size: 12px;  /* Font size for dropdown text */
 }
